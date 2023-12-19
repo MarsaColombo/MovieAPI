@@ -30,7 +30,6 @@ namespace MovieMinimalAPI
             app.MapGet("/movies/{1}", async () => { });
             app.MapGet("/movies", GetAllMovie);
             
-            
             app.Run();
         }
 
