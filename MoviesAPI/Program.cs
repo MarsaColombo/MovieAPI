@@ -81,6 +81,15 @@ namespace MovieMinimalAPI
                 movieRepository4.UpdateMovie(id, movie);
                 return Results.Json(movie);
             });
+            
+            var ActorRepository =
+                new ActorRepository(keyConnectionString);
+            app.MapDelete("/actors/{id}", (int id) =>
+            {
+                ActorRepository.DeleteActor(id);
+                
+                return Results.Ok();
+            });
 
             app.Run();
         }
