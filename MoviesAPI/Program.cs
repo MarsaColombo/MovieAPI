@@ -65,6 +65,14 @@ namespace MovieMinimalAPI
                 var movie = movieRepository2.GetMovieById(id);
                 return Results.Json(movie);
             });
+            
+            var movieRepository3 =
+                new MovieRepository(keyConnectionString);
+            app.MapPost("/movies", (Movie movie) =>
+            {
+                movieRepository3.AddMovie(movie);
+                return Results.Json(movie);
+            });
 
             app.Run();
         }
