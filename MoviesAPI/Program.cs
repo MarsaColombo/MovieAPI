@@ -1,6 +1,10 @@
 using MoviesAPI;
 using Npgsql;
-using System.Data.Common;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
 
 namespace MovieMinimalAPI
 {
@@ -10,11 +14,22 @@ namespace MovieMinimalAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            /*Add Cors to access every data outside */
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            // Add services to the container.
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            /*    Add cors for everything*/
+
 
             var app = builder.Build();
 
@@ -25,41 +40,25 @@ namespace MovieMinimalAPI
                 app.UseSwaggerUI();
             }
 
+
             app.UseHttpsRedirection();
+            app.UseCors();
 
-            app.MapGet("/movies/{1}", async () => { });
-            app.MapGet("/movies", GetAllMovie);
+            /*Constant for connection string*/
+            var keyConnectionString =
+                @"Host=localhost;Port=5436;Username=postgres;Password=PirateBiaou@123;Database=movie_db;Pooling=true;";
             
-            app.Run();
-        }
 
-        private static Movie[] GetAllMovie()
-        {
-            List<Movie> movies = new();
-
-            var connectionPgSqlString =
-                "Host=localhost;Port=5432;Username=postgres;Password=admin;Database=Streaming;Pooling=true;";
-            //string connectionMySqlString = "TODO";
-            //string connectionMsSqlString = "TODO";
-
-            using var dataSource = NpgsqlDataSource.Create(connectionPgSqlString);
-            using var cmd = dataSource.CreateCommand("SELECT * FROM nomTablemovie");
-            using var reader = cmd.ExecuteReader();
-            {
-                while (reader.Read())
-                {
-                    Movie movieToAdd = new()
+            // Use MapGet to specify the endpoint and handler
+            var movieRepository =
+                new MovieRepository(keyConnectionString);
+                    app.MapGet("/movies", () =>
                     {
-                        Id = (int)reader["nomColonneId"],
-                        Title = reader["nomColonneTitle"].ToString(),
-                        ReleaseYear = (int)reader["nomColonneReleaseYear"],
-                        CreateDate = (DateTime)reader["nomColonneCreateDate"],
-                    };
-                    movies.Add(movieToAdd);
-                }
-            }
+                        var movies = movieRepository.GetAllMovies();
+                        return Results.Json(movies);
+                    });
 
-            return movies.ToArray();
+            app.Run();
         }
     }
 }
