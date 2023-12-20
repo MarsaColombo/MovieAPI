@@ -71,5 +71,18 @@ namespace MoviesAPI
             cmd.ExecuteNonQuery();
             return;
         }
+        /*Modifier un film*/
+        public void UpdateMovie(int id, Movie movie)
+        {
+            using var dataSource = NpgsqlDataSource.Create(_connectionString);
+            using var cmd = dataSource.CreateCommand("UPDATE movie SET title = @title, release_year = @release_year, created_date = @created_date, duration = @duration WHERE movieid = @id");
+            cmd.Parameters.AddWithValue("id", movie.Id);
+            cmd.Parameters.AddWithValue("title", movie.Title);
+            cmd.Parameters.AddWithValue("release_year", movie.ReleaseYear);
+            cmd.Parameters.AddWithValue("created_date", movie.CreateDate);
+            cmd.Parameters.AddWithValue("duration", movie.Duration);
+            cmd.ExecuteNonQuery();
+            return;
+        }
     }
 }
