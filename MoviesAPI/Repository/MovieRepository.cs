@@ -34,5 +34,32 @@ namespace MoviesAPI
 
             return movies;
         }
+
+        public Movie GetMovieById(int id)
+        {
+            Movie movie = new();
+
+            using var dataSource = NpgsqlDataSource.Create(_connectionString);
+            using var cmd = dataSource.CreateCommand("SELECT * FROM movie WHERE movieid = @id");
+            cmd.Parameters.AddWithValue("id", id);
+
+            using var reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                movie = new Movie
+                {
+                    Id = (int)reader["movieid"],
+                    Title = reader["title"].ToString(),
+                    ReleaseYear = (int)reader["release_year"],
+                    CreateDate = (DateTime)reader["created_date"],
+                    Duration = (int)reader["duration"]
+                };
+            }
+
+            return movie;
+        }
+        
+
     }
 }

@@ -1,6 +1,26 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=743AA70D_002D4D5E_002D4821_002D8FA8_002D54401FE6AF3A_002Fd_003ARepository_002Ff_003ADbConnector_002Ecs/@EntryIndexedValue">ExplicitlyExcluded</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=93c025fb_002Dcebf_002D44a6_002D8e87_002D78808f25b225/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="returns_list_of_all_movies_with_valid_connection_string" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3e62aa69_002Dfa19_002D4855_002Db991_002Deaf055ab8744/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="returns_list_of_all_movies_with_valid_connection_string #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::027B6255-954C-4FCF-8598-D5C2D83E4CCF::net6.0::TestMoviesAPI.TestGetAllMovies.returns_list_of_all_movies_with_valid_connection_string&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3fdc7579_002D1b6c_002D4f0f_002Dbb01_002D5567e1c15036/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="returns_list_of_all_movies_with_valid_connection_string #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::027B6255-954C-4FCF-8598-D5C2D83E4CCF::net6.0::TestMoviesAPI.TestGetAllMovies.returns_list_of_all_movies_with_valid_connection_string&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7efb2239_002Df75f_002D4ace_002Dad17_002Dd4f6de0593ef/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="returns_list_of_all_movies_with_valid_connection_string #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::027B6255-954C-4FCF-8598-D5C2D83E4CCF::net6.0::TestMoviesAPI.TestGetAllMovies.returns_list_of_all_movies_with_valid_connection_string&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=93c025fb_002Dcebf_002D44a6_002D8e87_002D78808f25b225/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="returns_list_of_all_movies_with_valid_connection_string" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::027B6255-954C-4FCF-8598-D5C2D83E4CCF::net6.0::TestMoviesAPI.TestGetAllMovies.returns_list_of_all_movies_with_valid_connection_string&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a9c3d1a2_002D1651_002D44b1_002D94e5_002D8ca4cf50a633/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="returns_list_of_all_movies_with_valid_connection_string #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;MSTest::027B6255-954C-4FCF-8598-D5C2D83E4CCF::net6.0::TestMoviesAPI.TestGetAllMovies.returns_list_of_all_movies_with_valid_connection_string&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
