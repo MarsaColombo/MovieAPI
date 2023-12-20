@@ -56,10 +56,20 @@ namespace MoviesAPI
                     Duration = (int)reader["duration"]
                 };
             }
-
+            
             return movie;
         }
-        
-
+        /*Ajouter un film*/ 
+        public void AddMovie(Movie movie)
+        {
+            using var dataSource = NpgsqlDataSource.Create(_connectionString);
+            using var cmd = dataSource.CreateCommand("INSERT INTO movie (title, release_year, created_date, duration) VALUES (@title, @release_year, @created_date, @duration)");
+            cmd.Parameters.AddWithValue("title", movie.Title);
+            cmd.Parameters.AddWithValue("release_year", movie.ReleaseYear);
+            cmd.Parameters.AddWithValue("created_date", movie.CreateDate);
+            cmd.Parameters.AddWithValue("duration", movie.Duration);
+            cmd.ExecuteNonQuery();
+            return;
+        }
     }
 }
