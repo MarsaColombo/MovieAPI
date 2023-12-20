@@ -1,0 +1,153 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/marsa/Documents/Coding/C/MoviesAPI/TestMoviesAPI/TestMoviesAPI.csproj": {}
+  },
+  "projects": {
+    "/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/MoviesAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/MoviesAPI.csproj",
+        "projectName": "MoviesAPI",
+        "projectPath": "/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/MoviesAPI.csproj",
+        "packagesPath": "/Users/marsa/.nuget/packages/",
+        "outputPath": "/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/marsa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.417/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/marsa/Documents/Coding/C/MoviesAPI/TestMoviesAPI/TestMoviesAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/marsa/Documents/Coding/C/MoviesAPI/TestMoviesAPI/TestMoviesAPI.csproj",
+        "projectName": "TestMoviesAPI",
+        "projectPath": "/Users/marsa/Documents/Coding/C/MoviesAPI/TestMoviesAPI/TestMoviesAPI.csproj",
+        "packagesPath": "/Users/marsa/.nuget/packages/",
+        "outputPath": "/Users/marsa/Documents/Coding/C/MoviesAPI/TestMoviesAPI/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/marsa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/MoviesAPI.csproj": {
+                "projectPath": "/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/MoviesAPI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[2.2.8, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.2.8, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.1.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.417/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
