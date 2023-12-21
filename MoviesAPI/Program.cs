@@ -46,12 +46,13 @@ namespace MovieMinimalAPI
 
             /*Constant for connection string*/
             var keyConnectionString =
-                @"Host=localhost;Port=5436;Username=postgres;Password=PirateBiaou@123;Database=movie_db;Pooling=true;";
+                @"Host=localhost;Port=5436;Username=postgres;Password=PirateBiaou@123;Database=movie_db;Pooling=true; Include Error Detail=true";
 
 
             // Use MapGet to specify the endpoint and handler
             var movieRepository =
                 new MovieRepository(keyConnectionString);
+            
             app.MapGet("/movies", () =>
             {
                 var movies = movieRepository.GetAllMovies();
@@ -68,11 +69,8 @@ namespace MovieMinimalAPI
             
             var movieRepository3 =
                 new MovieRepository(keyConnectionString);
-            app.MapPost("/movies", (Movie movie) =>
-            {
-                movieRepository3.AddMovie(movie);
-                return Results.Json(movie);
-            });
+            app.MapPost("/movies",movieRepository3.AddMovie);
+
             
             var movieRepository4 =
                 new MovieRepository(keyConnectionString);
@@ -90,6 +88,7 @@ namespace MovieMinimalAPI
                 
                 return Results.Ok();
             });
+            app.MapPost("/actors", ActorRepository.AddActor);
 
             app.Run();
         }
