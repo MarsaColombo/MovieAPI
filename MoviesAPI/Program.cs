@@ -82,12 +82,13 @@ namespace MovieMinimalAPI
             
             var ActorRepository =
                 new ActorRepository(keyConnectionString);
-            app.MapDelete("/actors/{id}", (int id) =>
+            app.MapDelete("/acteurs/{id}", (int id) =>
             {
                 ActorRepository.DeleteActor(id);
                 
                 return Results.Ok();
             });
+            
             app.MapPost("/actors", ActorRepository.AddActor);
 
             app.Run();
