@@ -1,4 +1,5 @@
-using JetBrains.Diagnostics;
+using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using NpgsqlTypes;
@@ -14,26 +15,47 @@ namespace MoviesAPI
             _connectionString = connectionString;
         }
 
+        private Movie ReadMovieFromReader(NpgsqlDataReader reader)
+        {
+            return new Movie
+            {
+                Id = reader["movieid"] is DBNull ? 0 : (int)reader["movieid"],
+                Title = reader["title"] is DBNull ? string.Empty : reader["title"].ToString(),
+                ReleaseYear = reader["release_year"] is DBNull ? 0 : (int)reader["release_year"],
+                CreateDate = reader["created_date"] is DBNull ? DateTime.MinValue : (DateTime)reader["created_date"],
+                Duration = reader["duration"] is DBNull ? 0 : (int)reader["duration"]
+            };
+        }
+
+        private NpgsqlCommand CreateCommand(string sql, Dictionary<string, object> parameters = null)
+        {
+            using var dataSource = NpgsqlDataSource.Create(_connectionString);
+            var cmd = dataSource.CreateCommand(sql);
+
+            if (parameters != null)
+            {
+                foreach (var (key, value) in parameters)
+                {
+                    cmd.Parameters.AddWithValue(key, value);
+                }
+            }
+
+            return cmd;
+        }
+
         public List<Movie> GetAllMovies()
         {
-            List<Movie> movies = new();
+            var movies = new List<Movie>();
 
-            using var dataSource = NpgsqlDataSource.Create(_connectionString);
-            using var cmd = dataSource.CreateCommand("SELECT * FROM movie");
-            using var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            using (var dataSource = NpgsqlDataSource.Create(_connectionString))
             {
-                var movieToAdd = new Movie
+                using var cmd = dataSource.CreateCommand("SELECT * FROM movie");
+                using var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    Id = reader["movieid"] is DBNull ? 0 : (int)reader["movieid"],
-                    Title = reader["title"] is DBNull ? string.Empty : reader["title"].ToString(),
-                    ReleaseYear = reader["release_year"] is DBNull ? 0 : (int)reader["release_year"],
-                    CreateDate =
-                        reader["created_date"] is DBNull ? DateTime.MinValue : (DateTime)reader["created_date"],
-                    Duration = reader["duration"] is DBNull ? 0 : (int)reader["duration"]
-                };
-                movies.Add(movieToAdd);
+                    movies.Add(ReadMovieFromReader(reader));
+                }
             }
 
             return movies;
@@ -41,60 +63,79 @@ namespace MoviesAPI
 
         public Movie GetMovieById(int id)
         {
-            Movie movie = new();
+            var movie = new Movie();
 
-            using var dataSource = NpgsqlDataSource.Create(_connectionString);
-            using var cmd = dataSource.CreateCommand("SELECT * FROM movie WHERE movieid = @id");
-            cmd.Parameters.AddWithValue("id", id);
-
-            using var reader = cmd.ExecuteReader();
-
-            if (reader.Read())
+            using (var dataSource = NpgsqlDataSource.Create(_connectionString))
             {
-                movie = new Movie
+                using var cmd = dataSource.CreateCommand("SELECT * FROM movie WHERE movieid = @id");
+                cmd.Parameters.AddWithValue("@id", id);
+                using var reader = cmd.ExecuteReader();
+
+                if (reader.Read())
                 {
-                    Id = reader["movieid"] is DBNull ? 0 : (int)reader["movieid"],
-                    Title = reader["title"] is DBNull ? string.Empty : reader["title"].ToString(),
-                    ReleaseYear = reader["release_year"] is DBNull ? 0 : (int)reader["release_year"],
-                    CreateDate =
-                        reader["created_date"] is DBNull ? DateTime.MinValue : (DateTime)reader["created_date"],
-                    Duration = reader["duration"] is DBNull ? 0 : (int)reader["duration"]
-                };
+                    movie = ReadMovieFromReader(reader);
+                }
             }
 
             return movie;
         }
 
-
-        /*Ajouter un film selon juste sont titre et sa date de sortie*/
         public void AddMovie([FromBody] PostMovie postMovie)
         {
-            using var dataSource = NpgsqlDataSource.Create(_connectionString);
-            using var cmd = dataSource.CreateCommand(
-                "INSERT INTO movie (title, release_year) VALUES (@titre, @dateSortie)");
+            var sql = "INSERT INTO movie (title, release_year) VALUES (@titre, @dateSortie)";
+            var parameters = new Dictionary<string, object>
+            {
+                { "@titre", postMovie.titre ?? "No title" },
+                { "@dateSortie", postMovie.dateSortie }
+            };
 
-            // Use AddWithValue for each parameter
-            cmd.Parameters.AddWithValue("@titre", postMovie.titre ?? "No title");
-            cmd.Parameters.AddWithValue("@dateSortie", postMovie.dateSortie);
+            using (var dataSource = NpgsqlDataSource.Create(_connectionString))
+            using (var connection = dataSource.CreateConnection())
+            {
+                connection.Open();
 
-            cmd.ExecuteNonQuery();
+                using var cmd = connection.CreateCommand();
+                cmd.CommandText = sql;
+
+                foreach (var (key, value) in parameters)
+                {
+                    cmd.Parameters.AddWithValue(key, value);
+                }
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
 
-
-        /*Modifier un film*/
         public void UpdateMovie(int id, Movie movie)
         {
-            using var dataSource = NpgsqlDataSource.Create(_connectionString);
-            using var cmd = dataSource.CreateCommand(
-                "UPDATE movie SET title = @title, release_year = @release_year, created_date = @created_date, duration = @duration WHERE movieid = @id");
-            cmd.Parameters.AddWithValue("id", movie.Id);
-            cmd.Parameters.AddWithValue("title", movie.Title);
-            cmd.Parameters.AddWithValue("release_year", movie.ReleaseYear);
-            cmd.Parameters.AddWithValue("created_date", movie.CreateDate);
-            cmd.Parameters.AddWithValue("duration", movie.Duration);
-            cmd.ExecuteNonQuery();
-            return;
+            var sql =
+                "UPDATE movie SET title = @title, release_year = @release_year, created_date = @created_date, duration = @duration WHERE movieid = @id";
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "@id", movie.Id },
+                { "@title", movie.Title },
+                { "@release_year", movie.ReleaseYear },
+                { "@created_date", movie.CreateDate },
+                { "@duration", movie.Duration }
+            };
+
+            using (var dataSource = NpgsqlDataSource.Create(_connectionString))
+            using (var connection = dataSource.CreateConnection())
+            {
+                connection.Open();
+
+                using var cmd = connection.CreateCommand();
+                cmd.CommandText = sql;
+                foreach (var (key, value) in parameters)
+                {
+                    cmd.Parameters.AddWithValue(key, value);
+                }
+
+
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }
