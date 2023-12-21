@@ -10,7 +10,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Npgsql": "8.0.1",
-          "Swashbuckle.AspNetCore": "6.5.0"
+          "Swashbuckle.AspNetCore": "6.5.0",
+          "JetBrains.ReSharper.TestRunner.Merged": "2.11.1.101"
         },
         "runtime": {
           "MoviesAPI.dll": {}
@@ -198,6 +199,30 @@
             "fileVersion": "8.0.23.53103"
           }
         }
+      },
+      "JetBrains.ReSharper.TestRunner.Merged/2.11.1.101": {
+        "runtime": {
+          "JetBrains.ReSharper.TestRunner.Merged.dll": {
+            "assemblyVersion": "2.11.1.101",
+            "fileVersion": "2.11.1.101"
+          }
+        }
+      },
+      "JetBrains.ReSharper.TestRunner.Abstractions/2.11.1.0": {
+        "runtime": {
+          "JetBrains.ReSharper.TestRunner.Abstractions.dll": {
+            "assemblyVersion": "2.11.1.0",
+            "fileVersion": "2.11.1.0"
+          }
+        }
+      },
+      "JetBrains.ReSharper.TestRunner.Utilities/2.11.1.13": {
+        "runtime": {
+          "JetBrains.ReSharper.TestRunner.Utilities.dll": {
+            "assemblyVersion": "2.11.1.13",
+            "fileVersion": "2.11.1.13"
+          }
+        }
       }
     }
   },
@@ -381,6 +406,21 @@
       "sha512": "sha512-OdrZO2WjkiEG6ajEFRABTRCi/wuXQPxeV6g8xvUJqdxMvvuCCEk86zPla8UiIQJz3durtUEbNyY/3lIhS0yZvQ==",
       "path": "system.text.json/8.0.0",
       "hashPath": "system.text.json.8.0.0.nupkg.sha512"
+    },
+    "JetBrains.ReSharper.TestRunner.Merged/2.11.1.101": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "JetBrains.ReSharper.TestRunner.Abstractions/2.11.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "JetBrains.ReSharper.TestRunner.Utilities/2.11.1.13": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

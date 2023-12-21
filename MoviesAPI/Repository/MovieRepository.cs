@@ -1,4 +1,7 @@
+using JetBrains.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using Npgsql;
+using NpgsqlTypes;
 
 namespace MoviesAPI
 {
@@ -23,11 +26,12 @@ namespace MoviesAPI
             {
                 var movieToAdd = new Movie
                 {
-                    Id = (int)reader["movieid"],
-                    Title = reader["title"].ToString(),
-                    ReleaseYear = (int)reader["release_year"],
-                    CreateDate = (DateTime)reader["created_date"],
-                    Duration = (int)reader["duration"]
+                    Id = reader["movieid"] is DBNull ? 0 : (int)reader["movieid"],
+                    Title = reader["title"] is DBNull ? string.Empty : reader["title"].ToString(),
+                    ReleaseYear = reader["release_year"] is DBNull ? 0 : (int)reader["release_year"],
+                    CreateDate =
+                        reader["created_date"] is DBNull ? DateTime.MinValue : (DateTime)reader["created_date"],
+                    Duration = reader["duration"] is DBNull ? 0 : (int)reader["duration"]
                 };
                 movies.Add(movieToAdd);
             }
@@ -49,33 +53,41 @@ namespace MoviesAPI
             {
                 movie = new Movie
                 {
-                    Id = (int)reader["movieid"],
-                    Title = reader["title"].ToString(),
-                    ReleaseYear = (int)reader["release_year"],
-                    CreateDate = (DateTime)reader["created_date"],
-                    Duration = (int)reader["duration"]
+                    Id = reader["movieid"] is DBNull ? 0 : (int)reader["movieid"],
+                    Title = reader["title"] is DBNull ? string.Empty : reader["title"].ToString(),
+                    ReleaseYear = reader["release_year"] is DBNull ? 0 : (int)reader["release_year"],
+                    CreateDate =
+                        reader["created_date"] is DBNull ? DateTime.MinValue : (DateTime)reader["created_date"],
+                    Duration = reader["duration"] is DBNull ? 0 : (int)reader["duration"]
                 };
             }
-            
+
             return movie;
         }
-        /*Ajouter un film*/ 
-        public void AddMovie(Movie movie)
+
+
+        /*Ajouter un film selon juste sont titre et sa date de sortie*/
+        public void AddMovie([FromBody] PostMovie postMovie)
         {
             using var dataSource = NpgsqlDataSource.Create(_connectionString);
-            using var cmd = dataSource.CreateCommand("INSERT INTO movie (title, release_year, created_date, duration) VALUES (@title, @release_year, @created_date, @duration)");
-            cmd.Parameters.AddWithValue("title", movie.Title);
-            cmd.Parameters.AddWithValue("release_year", movie.ReleaseYear);
-            cmd.Parameters.AddWithValue("created_date", movie.CreateDate);
-            cmd.Parameters.AddWithValue("duration", movie.Duration);
+            using var cmd = dataSource.CreateCommand(
+                "INSERT INTO movie (title, release_year) VALUES (@titre, @dateSortie)");
+
+            // Use AddWithValue for each parameter
+            cmd.Parameters.AddWithValue("@titre", postMovie.titre ?? "No title");
+            cmd.Parameters.AddWithValue("@dateSortie", postMovie.dateSortie);
+
             cmd.ExecuteNonQuery();
-            return;
         }
+
+
+
         /*Modifier un film*/
         public void UpdateMovie(int id, Movie movie)
         {
             using var dataSource = NpgsqlDataSource.Create(_connectionString);
-            using var cmd = dataSource.CreateCommand("UPDATE movie SET title = @title, release_year = @release_year, created_date = @created_date, duration = @duration WHERE movieid = @id");
+            using var cmd = dataSource.CreateCommand(
+                "UPDATE movie SET title = @title, release_year = @release_year, created_date = @created_date, duration = @duration WHERE movieid = @id");
             cmd.Parameters.AddWithValue("id", movie.Id);
             cmd.Parameters.AddWithValue("title", movie.Title);
             cmd.Parameters.AddWithValue("release_year", movie.ReleaseYear);
