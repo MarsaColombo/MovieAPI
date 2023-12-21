@@ -17,7 +17,8 @@ public class ActorRepository
     public void AddActor(Actor actor)
     {
         using var dataSource = NpgsqlDataSource.Create(_connectionString);
-        using var cmd = dataSource.CreateCommand("INSERT INTO actor (firstname, lastname, birthdate, created_date, modified_date, age) VALUES (@prenom, @nom, @birthdate, @created_date, @modified_date, @age)");
+        using var cmd = dataSource.CreateCommand(
+            "INSERT INTO actor (firstname, lastname, birthdate, created_date, modified_date, age) VALUES (@prenom, @nom, @birthdate, @created_date, @modified_date, @age)");
         cmd.Parameters.AddWithValue("prenom", actor.prenom);
         cmd.Parameters.AddWithValue("nom", actor.nom);
         cmd.Parameters.AddWithValue("birthdate", actor.birthdate);
@@ -32,7 +33,7 @@ public class ActorRepository
     {
         using var dataSource = NpgsqlDataSource.Create(_connectionString);
         using var cmd = dataSource.CreateCommand("DELETE FROM actor WHERE actorid = @id");
-        cmd.Parameters.AddWithValue("id", id);
+        cmd.Parameters.AddWithValue("@id", id);
         cmd.ExecuteNonQuery();
     }
 }

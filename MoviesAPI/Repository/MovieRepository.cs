@@ -6,15 +6,27 @@ using NpgsqlTypes;
 
 namespace MoviesAPI
 {
+    /// <summary>
+    /// Représente un repository pour interagir avec la base de données des films.
+    /// </summary>
     public class MovieRepository
     {
         private readonly string _connectionString;
 
+        /// <summary>
+        /// Initialise une nouvelle instance de la classe MovieRepository avec la chaîne de connexion à la base de données.
+        /// </summary>
+        /// <param name="connectionString">La chaîne de connexion à la base de données PostgreSQL.</param>
         public MovieRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
 
+        /// <summary>
+        /// Lit un objet Movie à partir du lecteur NpgsqlDataReader.
+        /// </summary>
+        /// <param name="reader">Le lecteur NpgsqlDataReader contenant les données du film.</param>
+        /// <returns>Un objet Movie avec les données lues.</returns>
         private Movie ReadMovieFromReader(NpgsqlDataReader reader)
         {
             return new Movie
@@ -27,6 +39,12 @@ namespace MoviesAPI
             };
         }
 
+        /// <summary>
+        /// Crée une instance NpgsqlCommand avec la requête SQL spécifiée et les paramètres fournis.
+        /// </summary>
+        /// <param name="sql">La requête SQL.</param>
+        /// <param name="parameters">Les paramètres de la requête.</param>
+        /// <returns>Une instance de NpgsqlCommand prête à être exécutée.</returns>
         private NpgsqlCommand CreateCommand(string sql, Dictionary<string, object> parameters = null)
         {
             using var dataSource = NpgsqlDataSource.Create(_connectionString);
@@ -43,6 +61,10 @@ namespace MoviesAPI
             return cmd;
         }
 
+        /// <summary>
+        /// Récupère la liste de tous les films depuis la base de données.
+        /// </summary>
+        /// <returns>Une liste d'objets Movie.</returns>
         public List<Movie> GetAllMovies()
         {
             var movies = new List<Movie>();
@@ -61,6 +83,11 @@ namespace MoviesAPI
             return movies;
         }
 
+        /// <summary>
+        /// Récupère un film spécifique à partir de son identifiant.
+        /// </summary>
+        /// <param name="id">L'identifiant du film.</param>
+        /// <returns>Un objet Movie correspondant à l'identifiant fourni.</returns>
         public Movie GetMovieById(int id)
         {
             var movie = new Movie();
@@ -80,6 +107,10 @@ namespace MoviesAPI
             return movie;
         }
 
+        /// <summary>
+        /// Ajoute un nouveau film à la base de données.
+        /// </summary>
+        /// <param name="postMovie">Les détails du nouveau film à ajouter.</param>
         public void AddMovie([FromBody] PostMovie postMovie)
         {
             var sql = "INSERT INTO movie (title, release_year) VALUES (@titre, @dateSortie)";
@@ -106,7 +137,11 @@ namespace MoviesAPI
             }
         }
 
-
+        /// <summary>
+        /// Met à jour les informations d'un film dans la base de données.
+        /// </summary>
+        /// <param name="id">L'identifiant du film à mettre à jour.</param>
+        /// <param name="movie">Les nouvelles informations du film.</param>
         public void UpdateMovie(int id, Movie movie)
         {
             var sql =
@@ -132,7 +167,6 @@ namespace MoviesAPI
                 {
                     cmd.Parameters.AddWithValue(key, value);
                 }
-
 
                 cmd.ExecuteNonQuery();
             }
