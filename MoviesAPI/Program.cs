@@ -5,8 +5,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MoviesAPI
 {
+    /// <summary>
+    /// Classe principale représentant le point d'entrée de l'application.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Point d'entrée principal de l'application.
+        /// </summary>
+        /// <param name="args">Arguments de la ligne de commande.</param>
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -20,9 +27,13 @@ namespace MoviesAPI
             app.Run();
         }
 
+        /// <summary>
+        /// Configurer les services nécessaires pour l'application.
+        /// </summary>
+        /// <param name="services">Collection de services à configurer.</param>
         private static void ConfigureServices(IServiceCollection services)
         {
-            // Add Cors to access every data outside
+            // Ajouter CORS pour accéder à toutes les données à l'extérieur.
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
@@ -33,23 +44,27 @@ namespace MoviesAPI
                 });
             });
 
-            // Add services to the container.
+            // Ajouter la documentation Swagger
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
-            // Register repositories using dependency injection
+            // Enregistrer les référentiels avec l'injection de dépendances
             const string keyConnectionString =
                 @"Host=localhost;Port=5436;Username=postgres;Password=PirateBiaou@123;Database=movie_db;Pooling=true; Include Error Detail=true";
             services.AddSingleton(new MovieRepository(keyConnectionString));
             services.AddSingleton(new ActorRepository(keyConnectionString));
 
-            // Register controllers
+            // Enregistrer les contrôleurs
             services.AddControllers();
         }
 
+        /// <summary>
+        /// Configurer l'application web.
+        /// </summary>
+        /// <param name="app">L'application web à configurer.</param>
         private static void Configure(WebApplication app)
         {
-            // Configure the HTTP request pipeline.
+            // Configurer le pipeline de requêtes HTTP.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -59,7 +74,7 @@ namespace MoviesAPI
             app.UseHttpsRedirection();
             app.UseCors();
 
-            // Use routing and controllers
+            // Utiliser le routage et les contrôleurs
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
