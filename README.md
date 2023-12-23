@@ -48,9 +48,12 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine :
     ```
 
 4. **Configuration de l'API**
+Après avoir ouvert le dossier vous aurez à configuerer l'API avec la base de donnée qu'il faut, vous trouverez les information requis dans les informations du serveur que vous aurez lancé sur PostgreSQL
+
+![ConnectionString](./divers/IntelliJ%20Snippet.png)
 
 
-5. **Executer les programmes requis**
+6. **Executer les programmes requis**
 - Assurez-vous d'executer la base de donnée sur votre serveur PostgreSQL
 - Assurez de lancer le Front-End sans problèmes
 - Enfin lancez l'application .NET et vérifiez que les requêtes soient opérationnelles sur Swagger d'abord
