@@ -1,4 +1,4 @@
-![image](https://github.com/MarsaColombo/MovieAPI/assets/106619812/d0b71631-8053-48bd-b589-7db7077ce959)# Movies API
+# Movies API
 
 Cette API permet la gestion des acteurs et des films dans un système de gestion de films.
 
@@ -48,7 +48,7 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine :
 
 4. **Configuration de l'API**
 
-   ![Uploading image.png…]()
+![Uploading image.png…]()
 
 5. **Executer les programmes requis**
 - Assurez-vous d'executer la base de donnée sur votre serveur PostgreSQL
