@@ -51,6 +51,82 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine :
 - Assurez de lancer le Front-End sans problèmes
 - Enfin lancez l'application .NET et vérifiez que les requêtes soient opérationnelles sur Swagger d'abord
 
+## Endpoints
+
+### Acteurs
+
+#### Ajouter un Acteur
+
+- **POST /actors**
+
+  Ajoute un nouvel acteur dans le système.
+
+  **JSON Payload:**
+  ```json
+  {
+    "prenom": "John",
+    "nom": "Doe",
+    "birthdate": "1990-01-01",
+    "created_date": "2023-01-01",
+    "modified_date": "2023-01-01",
+    "age": 33
+  }
+  ```
+#### Supprimer un Acteur
+
+- **DELETE /actors/{id}**
+
+  Supprime un acteur du système en fonction de son identifiant.
+
+
+## Films
+
+#### Récupérer tous les Films
+
+- **GET /movies**
+
+  Récupère la liste de tous les films du système.
+
+#### Récupérer un Film par son Identifiant
+
+- **GET /movies/{id}**
+
+  Récupère un film du système en fonction de son identifiant.
+
+#### Ajouter un Nouveau Film
+
+- **POST /movies**
+
+  Ajoute un nouveau film dans le système.
+
+  **JSON Payload:**
+
+  ```json
+  {
+    "titre": "Inception",
+    "dateSortie": 2010
+  }
+  ```
+  
+#### Mettre à Jour les Informations d'un Film
+
+- **PUT /movies/{id}**
+
+  Met à jour les informations d'un film dans le système.
+
+  **JSON Payload:**
+
+  ```json
+  {
+    "id": 1,
+    "title": "Inception",
+    "release_year": 2010,
+    "created_date": "2023-01-01",
+    "duration": 148
+  }
+  ```
+
+
 
 
 
