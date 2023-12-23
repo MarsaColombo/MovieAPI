@@ -18,10 +18,28 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine :
 - [.NET SDK](https://dotnet.microsoft.com/download)
 - [PostgreSQL](https://www.postgresql.org/download/)
 
+
+
 ### Étapes de Configuration
 
 1. **Cloner le Projet**
 
    ```bash
-   git clone https://url-du-repository.git
+   git clone https://github.com/MarsaColombo/MovieAPI.git
    cd MoviesAPI
+
+   
+   
+2. **Cloner le Front**
+
+  ```bash
+  git clone https://github.com/MarsaColombo/MoviesDB.git
+    
+3. **Cloner le Front**
+
+   ```bash
+   git clone https://github.com/simplon-lille-csharp-dotnet/MovieReactFront.git
+   npm i
+   npm run dev
+     
+   
