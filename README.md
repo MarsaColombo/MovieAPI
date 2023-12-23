@@ -1,4 +1,4 @@
-# Movies API
+![image](https://github.com/MarsaColombo/MovieAPI/assets/106619812/d0b71631-8053-48bd-b589-7db7077ce959)# Movies API
 
 Cette API permet la gestion des acteurs et des films dans un système de gestion de films.
 
@@ -46,7 +46,11 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine :
     npm run dev
     ```
 
-4. **Executer les programmes requis**
+4. **Configuration de l'API**
+
+   ![Uploading image.png…]()
+
+5. **Executer les programmes requis**
 - Assurez-vous d'executer la base de donnée sur votre serveur PostgreSQL
 - Assurez de lancer le Front-End sans problèmes
 - Enfin lancez l'application .NET et vérifiez que les requêtes soient opérationnelles sur Swagger d'abord
@@ -125,7 +129,11 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine :
     "duration": 148
   }
   ```
+## Crédits
 
+- Front-End : Laurent Descamps
+- DB : Aurore
+- API : Aymeric Biaou
 
 
 
