@@ -48,7 +48,7 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine :
     ```
 
 4. **Configuration de l'API**
-Après avoir ouvert le dossier vous aurez à configuerer l'API avec la base de donnée qu'il faut, vous trouverez les information requis dans les informations du serveur que vous aurez lancé sur PostgreSQL
+- Après avoir ouvert le dossier vous aurez à configuerer l'API avec la base de donnée qu'il faut, vous trouverez les information requis dans les informations du serveur que vous aurez lancé sur PostgreSQL
 
 ![ConnectionString](./IntelliJ%20Snippet.png)
 
