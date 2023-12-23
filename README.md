@@ -30,6 +30,7 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine :
 
    ```bash
    git clone https://github.com/MarsaColombo/MovieAPI.git
+   dotnet restore
    cd MoviesAPI
    ```
 2. **Cloner la DataBase**
