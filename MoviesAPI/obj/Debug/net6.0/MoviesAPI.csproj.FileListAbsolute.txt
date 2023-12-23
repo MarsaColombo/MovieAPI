@@ -32,9 +32,3 @@
 /Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/obj/Debug/net6.0/MoviesAPI.pdb
 /Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/obj/Debug/net6.0/MoviesAPI.genruntimeconfig.cache
 /Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/obj/Debug/net6.0/ref/MoviesAPI.dll
-/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/bin/Debug/net6.0/JetBrains.ReSharper.TestRunner.Merged.dll
-/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/bin/Debug/net6.0/JetBrains.ReSharper.TestRunner.Abstractions.dll
-/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/bin/Debug/net6.0/JetBrains.ReSharper.TestRunner.Utilities.dll
-/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/bin/Debug/net6.0/JetBrains.ReSharper.TestRunner.Merged.pdb
-/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/bin/Debug/net6.0/JetBrains.ReSharper.TestRunner.Abstractions.pdb
-/Users/marsa/Documents/Coding/C/MoviesAPI/MoviesAPI/bin/Debug/net6.0/JetBrains.ReSharper.TestRunner.Utilities.pdb

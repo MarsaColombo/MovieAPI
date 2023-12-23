@@ -16,6 +16,7 @@ Cette API permet la gestion des acteurs et des films dans un système de gestion
     - [Mettre à Jour les Informations d'un Film](#mettre-à-jour-les-informations-dun-film)
 
 ## Création et Configuration du Projet
+![ConnectionString](./divers/IntelliJ%20Snippet.png)
 
 ### Prérequis
 
