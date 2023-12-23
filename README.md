@@ -48,7 +48,6 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine :
 
 4. **Configuration de l'API**
 
-![Uploading image.png…]()
 
 5. **Executer les programmes requis**
 - Assurez-vous d'executer la base de donnée sur votre serveur PostgreSQL
